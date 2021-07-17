@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/hapax_nav"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/searchActivity">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="hapax.app.MainActivity"
-        android:label="MainActivity" />
     <activity
         android:id="@+id/searchActivity"
         android:name="hapax.app.SearchActivity"
-        android:label="activity_search"
-        tools:layout="@layout/activity_search" />
+        android:label="SearchActivity"
+        tools:layout="@layout/search_layout" />
+
+    <activity
+        android:id="@+id/appActivity"
+        android:name="hapax.app.AppActivity"
+        android:label="AppActivity"
+        tools:layout="@layout/app_layout"/>
 </navigation>
