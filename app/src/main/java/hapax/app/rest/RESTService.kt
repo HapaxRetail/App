@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Streaming
 
@@ -28,7 +29,10 @@ interface RESTService {
     }
 
     @POST("stores")
-    fun getStore(@Body store : StoreId ): Call<Store>
+    fun getStores(@Body store : StoreId ): Call<Store>
+
+    @GET("stores")
+    fun getStores(): Call<List<Store>>
 
     @POST("svg")
     @Streaming
