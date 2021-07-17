@@ -19,7 +19,7 @@
         android:background="@drawable/search_bg"
         android:iconifiedByDefault="false"
         android:padding="5dp"
-        android:queryHint="Search for your shop"
+        android:queryHint="@string/search_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

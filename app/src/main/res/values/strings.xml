@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Hapax</string>
-    <string name="search_for_a_shop_n_to_get_started">Search for a shop to get started...</string>
+    <string name="search_hint">Search for your store</string>
+    <string name="search_for_a_shop_n_to_get_started">Search for a store to get started...</string>
 </resources>
