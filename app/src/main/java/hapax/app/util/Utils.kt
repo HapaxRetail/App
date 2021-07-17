@@ -30,8 +30,6 @@ fun listener(function: (String) -> Boolean) : SearchView.OnQueryTextListener {
 fun <T> List<T>.search(search : String, function: (T) -> String) : List<T> {
     if(search.isEmpty()) return emptyList()
 
-    return filter { item -> function.invoke(item).contains(search, true) }.sortedBy { item ->
-        val name : String = function.invoke(item)
-        name.startsWith(search, true).compareTo(true) + name.equals(search, true).compareTo(true)
-    }
+    return filter { item -> function.invoke(item).contains(search, true) }
+        .sortedBy { item -> if(function.invoke(item).startsWith(search, true)) 0 else 1 }
 }

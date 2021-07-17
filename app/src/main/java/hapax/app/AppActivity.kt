@@ -13,7 +13,8 @@ import hapax.app.util.*
 class AppActivity: AppCompatActivity() {
     lateinit var name : String
     val store by lazy { CachedCall(call = RESTService.serv.getStores(StoreId(name))) }
-    private val adapter by lazy { ProductAdapter() }
+    private val adapter = ProductAdapter()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
