@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hapax.app.adapter.StoreAdapter
 import hapax.app.databinding.SearchLayoutBinding
 import hapax.app.rest.RESTService
-import hapax.app.simple.CachedCall
-import hapax.app.simple.SimpleCallback
-import hapax.app.simple.SimpleTextListener
+import hapax.app.util.*
 import java.util.*
 
 class SearchActivity : AppCompatActivity() {
@@ -28,12 +26,9 @@ class SearchActivity : AppCompatActivity() {
 
             rvStores.adapter = adapter
             rvStores.layoutManager = LinearLayoutManager(this@SearchActivity)
-            searchView.setOnQueryTextListener(SimpleTextListener { search ->
-                storeList.enqueue(SimpleCallback { stores ->
-                    val results =
-                        if(search.isEmpty()) emptyList()
-                        else stores.filter { name -> name.startsWith(search, true) }
-
+            searchView.setOnQueryTextListener(listener { search ->
+                storeList.enqueue(callback { stores ->
+                    val results = stores.search(search) { it }
                     adapter.search( results )
                     rvStores.setPadding(0, if (results.isEmpty()) 0 else 40, 0, 0)
                 })

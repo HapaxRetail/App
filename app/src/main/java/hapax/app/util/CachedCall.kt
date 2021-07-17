@@ -1,4 +1,4 @@
-package hapax.app.simple
+package hapax.app.util
 
 import okhttp3.Request
 import okio.Timeout
