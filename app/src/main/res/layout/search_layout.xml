@@ -7,6 +7,26 @@
     android:background="@color/bg_orange"
     tools:context=".SearchActivity">
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/search_bg"
+        android:iconifiedByDefault="false"
+        android:padding="5dp"
+        android:queryHint="Search for your shop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </SearchView>
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="120dp"
