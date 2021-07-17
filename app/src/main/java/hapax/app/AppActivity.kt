@@ -7,9 +7,8 @@ import hapax.app.adapter.ProductAdapter
 import hapax.app.databinding.AppLayoutBinding
 import hapax.app.rest.RESTService
 import hapax.app.rest.model.req.StoreId
-import hapax.app.simple.CachedCall
-import hapax.app.simple.SimpleCallback
-import hapax.app.simple.SimpleTextListener
+import hapax.app.rest.model.res.Product
+import hapax.app.util.*
 
 class AppActivity: AppCompatActivity() {
     lateinit var name : String
@@ -26,15 +25,11 @@ class AppActivity: AppCompatActivity() {
             rvProducts.adapter = adapter
             rvProducts.layoutManager = LinearLayoutManager(this@AppActivity)
 
-            store.enqueue(SimpleCallback { store ->
-                searchView.setOnQueryTextListener(SimpleTextListener { search ->
-                    val results =
-                        if(search.isEmpty()) emptyList()
-                        else store.products.filter { product -> product.name.startsWith(search, false) }
-
+            store.enqueue(callback { store ->
+                searchView.setOnQueryTextListener(listener { search ->
+                    val results = store.products.search(search, Product::name)
                     adapter.search( results )
                     rvProducts.setPadding(0, if (results.isEmpty()) 0 else 40, 0, 0)
-
                     true
                 })
             })
