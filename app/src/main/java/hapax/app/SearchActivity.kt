@@ -1,9 +1,13 @@
 package hapax.app
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import hapax.app.databinding.SearchLayoutBinding
+import hapax.app.rest.RESTService
+import hapax.app.simple.CachedCall
+import hapax.app.simple.SimpleCallback
+import hapax.app.simple.SimpleTextListener
 import java.util.*
 
 class SearchActivity : AppCompatActivity() {
@@ -20,5 +24,19 @@ class SearchActivity : AppCompatActivity() {
 
         val binding = SearchLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.rvStores.adapter = adapter
+        binding.rvStores.layoutManager = LinearLayoutManager(this)
+        binding.searchView.setOnQueryTextListener(SimpleTextListener { search ->
+            storeList.enqueue(SimpleCallback { stores ->
+                val results =
+                    if(search.isEmpty()) emptyList()
+                    else stores.filter { name -> name.startsWith(search, true) }
+
+                adapter.search( results )
+                binding.rvStores.setPadding(0, if (results.isEmpty()) 0 else 40, 0, 0)
+            })
+            true
+        })
     }
 }
