@@ -7,6 +7,9 @@ import android.widget.Button
 import hapax.app.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {
+    private val adapter by lazy { StoreAdapter() }
+    private val storeList by lazy { CachedCall(call = RESTService.serv.getStores()) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

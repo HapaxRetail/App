@@ -32,7 +32,7 @@ interface RESTService {
     fun getStores(@Body store : StoreId ): Call<Store>
 
     @GET("stores")
-    fun getStores(): Call<List<Store>>
+    fun getStores(): Call<List<String>>
 
     @POST("svg")
     @Streaming
