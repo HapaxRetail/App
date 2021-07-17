@@ -1,18 +1,12 @@
 package hapax.app.rest
 
-import hapax.app.rest.model.Store
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.util.function.Consumer
 
-fun main(args : Array<String>) {
-    RESTService.service.getStore("next").enqueue(object : Callback<Store> {
-        override fun onResponse(call: Call<Store>, response: Response<Store>) {
-            println(response.body()?.name);
-        }
-
-        override fun onFailure(call: Call<Store>, t: Throwable) {
-            println("Error")
-        }
-    })
+fun main(array: Array<String>) {
+    RESTService.getStore("next", Consumer { store ->
+        if(store == null)
+            println("No store found")
+        else
+            println("Name=${store.name} SVG:${store.svgURI}")
+    } )
 }
