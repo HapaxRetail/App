@@ -15,14 +15,16 @@ fun <T> callback(function: (T) -> Unit) : Callback<T> {
     }
 }
 
-fun listener(function: (String) -> Boolean) : SearchView.OnQueryTextListener {
+fun listener(function: (String) -> Unit) : SearchView.OnQueryTextListener {
     return object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(search: String): Boolean {
-            return function.invoke(search)
+            function.invoke(search)
+            return true
         }
 
         override fun onQueryTextChange(search: String): Boolean {
-            return function.invoke(search)
+            function.invoke(search)
+            return true
         }
     }
 }
@@ -30,6 +32,5 @@ fun listener(function: (String) -> Boolean) : SearchView.OnQueryTextListener {
 fun <T> List<T>.search(search : String, function: (T) -> String) : List<T> {
     if(search.isEmpty()) return emptyList()
 
-    return filter { item -> function.invoke(item).contains(search, true) }
-        .sortedBy { item -> if(function.invoke(item).startsWith(search, true)) 0 else 1 }
+    return filter { item -> function.invoke(item).split(" ").any { name -> name.startsWith(search, true) } }
 }

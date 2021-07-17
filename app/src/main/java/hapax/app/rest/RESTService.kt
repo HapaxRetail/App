@@ -14,6 +14,7 @@ import retrofit2.http.Streaming
 
 interface RESTService {
     companion object Factory {
+        @JvmStatic
         val serv: RESTService by lazy {
             Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
