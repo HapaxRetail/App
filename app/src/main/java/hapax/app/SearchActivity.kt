@@ -4,17 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import hapax.app.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
 
-        val backButton = findViewById<Button>(R.id.backButton)
+        val binding = ActivitySearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        backButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             val backIntent = Intent(this, MainActivity::class.java)
-
             startActivity(backIntent)
         }
     }

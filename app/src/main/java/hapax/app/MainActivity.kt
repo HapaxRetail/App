@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import hapax.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     val loading: Drawable by lazy { get(R.drawable.loading_page) }
@@ -22,16 +23,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val startButton = findViewById<Button>(R.id.startButton)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        startButton.setOnClickListener {
-            val intent = Intent( this, SearchActivity::class.java)
-
+        binding.startButton.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
-
     }
 }
 
