@@ -1,9 +1,12 @@
-package hapax.app
+package hapax.app.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import hapax.app.AppActivity
+import hapax.app.R
 import hapax.app.databinding.RcStoreBinding
 
 class StoreAdapter (private var stores: List<String> = emptyList()) :
@@ -28,7 +31,13 @@ class StoreAdapter (private var stores: List<String> = emptyList()) :
     }
 
     override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
-        RcStoreBinding.bind(holder.itemView).tvSearchTitle.text = stores[position]
+        val name = stores[position]
+        val view = holder.itemView
+        view.setOnClickListener {
+            val storeIntent = Intent(view.context, AppActivity::class.java).putExtra("store", name)
+            view.context.startActivity(storeIntent)
+        }
+        RcStoreBinding.bind(view).tvSearchTitle.text = name
     }
 
     override fun getItemCount(): Int {

@@ -3,6 +3,7 @@ package hapax.app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import hapax.app.adapter.StoreAdapter
 import hapax.app.databinding.SearchLayoutBinding
 import hapax.app.rest.RESTService
 import hapax.app.simple.CachedCall

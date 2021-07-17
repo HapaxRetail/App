@@ -20,9 +20,9 @@
 <!--        <activity android:name=".MainActivity">-->
 
 <!--        </activity>-->
-<!--        <activity android:name=".AppActivity">-->
-<!--            -->
-<!--        </activity>-->
+        <activity android:name=".AppActivity">
+
+        </activity>
     </application>
 
 </manifest>
