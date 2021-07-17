@@ -1,9 +1,10 @@
-package hapax.app.rest.model
+package hapax.app.rest.model.res
 
 class Store (
+    val _id : String,
     val name : String,
     val svgURI : String,
     val svgWidth : Int,
     val svgHeight : Int,
-    val products : Map<String, Product>
+    val products : List<Product>
 )
