@@ -4,19 +4,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import hapax.app.AppActivity
 import hapax.app.R
-import hapax.app.databinding.RcStoreBinding
+import hapax.app.databinding.RcProductBinding
 import hapax.app.rest.model.res.Product
+import java.text.DecimalFormat
+import java.util.Collections.singletonList
 
-class ProductAdapter (private var products: List<Product> = emptyList()) :
-    RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter (val activity : AppActivity): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+    private var products: List<Product> = emptyList()
+    private val shoppingList = mutableSetOf<Product>()
 
     class ProductViewHolder (itemView : View) : RecyclerView.ViewHolder (itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.rc_store,
+                R.layout.rc_product,
                 parent,
                 false
             )
@@ -25,17 +29,27 @@ class ProductAdapter (private var products: List<Product> = emptyList()) :
 
     fun search(search : List<Product>) {
         products = search
-
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
-        val view = holder.itemView
-        view.setOnClickListener {
-            // TODO: Clicking product
+        RcProductBinding.bind(holder.itemView).apply {
+            name.text = product.name
+            price.text = DecimalFormat("£0.00").format(product.price)
+            inList.isChecked = shoppingList.contains(product)
+            star1.setBackgroundResource(if(product.stars >= 1) R.color.yellow else R.color.gray)
+            star2.setBackgroundResource(if(product.stars >= 2) R.color.yellow else R.color.gray)
+            star3.setBackgroundResource(if(product.stars >= 3) R.color.yellow else R.color.gray)
+            find.setOnClickListener {
+                search(singletonList(product))
+                activity.displaySVG(product)
+            }
+            inList.setOnClickListener { when {
+                    shoppingList.remove(product) -> inList.isChecked = false
+                    shoppingList.add(product) -> inList.isChecked = true
+                } }
         }
-        RcStoreBinding.bind(view).tvSearchTitle.text = product.name
     }
 
     override fun getItemCount(): Int {

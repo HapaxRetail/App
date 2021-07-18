@@ -37,7 +37,7 @@ class StoreAdapter (private var stores: List<String> = emptyList()) :
             val storeIntent = Intent(view.context, AppActivity::class.java).putExtra("store", name)
             view.context.startActivity(storeIntent)
         }
-        RcStoreBinding.bind(view).tvSearchTitle.text = name
+        RcStoreBinding.bind(view).name.text = name
     }
 
     override fun getItemCount(): Int {

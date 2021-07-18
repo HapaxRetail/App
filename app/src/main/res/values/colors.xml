@@ -10,4 +10,7 @@
     <color name="brown">#804219</color>
     <color name="bg_orange">#F9AC75</color>
     <color name="light_orange">#F8C9A9</color>
+    <color name="red">#f0633c</color>
+    <color name="yellow">#f7e628</color>
+    <color name="gray">#b5b5b5</color>
 </resources>

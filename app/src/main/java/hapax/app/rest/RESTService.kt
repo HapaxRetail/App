@@ -14,17 +14,12 @@ import retrofit2.http.Streaming
 
 interface RESTService {
     companion object Factory {
-        private fun create() : RESTService {
-            val retrofit = Retrofit.Builder()
+        @JvmStatic
+        val serv: RESTService by lazy {
+            Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("https://rest.levansj01.me")
-                .build()
-
-            return retrofit.create(RESTService::class.java)
-        }
-
-        val serv by lazy {
-            create()
+                .build().create(RESTService::class.java)
         }
     }
 

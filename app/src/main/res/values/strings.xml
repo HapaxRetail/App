@@ -3,6 +3,8 @@
     <string name="search_store_hint">Search for your store</string>
     <string name="search_product_hint">Search for your product</string>
     <string name="search_title">Search for a store to get started...</string>
+    <string name="find">find</string>
+    <string name="shopping_list_text">add to shopping list</string>
     <string name="navMenu_store">Find Store</string>
     <string name="navMenu_shoppingList">My Shopping Lists</string>
     <string name="navMenu_settings">Settings</string>

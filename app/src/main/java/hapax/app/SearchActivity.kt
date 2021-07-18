@@ -6,35 +6,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hapax.app.adapter.StoreAdapter
 import hapax.app.databinding.SearchLayoutBinding
 import hapax.app.rest.RESTService
-import hapax.app.simple.CachedCall
-import hapax.app.simple.SimpleCallback
-import hapax.app.simple.SimpleTextListener
+import hapax.app.util.*
 import java.util.*
 
 class SearchActivity : AppCompatActivity() {
-    private val adapter by lazy { StoreAdapter() }
-    private val storeList by lazy { CachedCall(call = RESTService.serv.getStores()) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val adapter = StoreAdapter()
         SearchLayoutBinding.inflate(layoutInflater).apply {
             setContentView(root)
 
             rvStores.adapter = adapter
             rvStores.layoutManager = LinearLayoutManager(this@SearchActivity)
-            searchView.setOnQueryTextListener(SimpleTextListener { search ->
-                storeList.enqueue(SimpleCallback { stores ->
-                    val results =
-                        if(search.isEmpty()) emptyList()
-                        else stores.filter { name -> name.startsWith(search, true) }
 
+            RESTService.serv.getStores().enqueue(callback { stores ->
+                searchView.setOnQueryTextListener(listener { search ->
+                    val results = stores.search(search) { it }
                     adapter.search( results )
                     rvStores.setPadding(0, if (results.isEmpty()) 0 else 40, 0, 0)
                 })
-                true
             })
         }
     }
-
 }
