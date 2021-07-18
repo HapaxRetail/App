@@ -34,6 +34,6 @@ fun <T> List<T>.search(search : String, function: (T) -> String) : List<T> {
 
     val searchArgs = search.split(" ")
     return filter { item -> function.invoke(item).split(" ").let { itemArgs ->
-        searchArgs.all { searchArg -> itemArgs.any { itemArg -> searchArg.startsWith(itemArg, true) } }
+        searchArgs.all { searchArg -> itemArgs.any { itemArg -> itemArg.startsWith(searchArg, true) } }
     } }
 }
