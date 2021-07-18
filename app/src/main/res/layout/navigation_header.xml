@@ -6,12 +6,12 @@
     android:layout_height="150dp"
     android:background="@color/bg_orange">
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imageButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="40dp"
-        android:src="@drawable/ic_launcher_foreground"
+        app:srcCompat="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

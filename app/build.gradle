@@ -9,10 +9,9 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        vectorDrawables.useSupportLibrary = "true"
+        vectorDrawables.useSupportLibrary = true
         applicationId "hapax.app"
-        minSdkVersion 24
-        targetSdkVersion 30
+        minSdkVersion 21
         versionCode 1
         versionName "1.0"
 
