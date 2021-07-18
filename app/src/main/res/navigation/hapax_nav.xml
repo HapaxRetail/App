@@ -9,7 +9,7 @@
         android:id="@+id/searchActivity"
         android:name="hapax.app.StoreFragment"
         android:label="SearchActivity"
-        tools:layout="@layout/store_search" />
+        tools:layout="@layout/store_layout" />
 
     <activity
         android:id="@+id/appActivity"

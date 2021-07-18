@@ -7,7 +7,7 @@
     android:id="@+id/drawerLayout"
     tools:context=".MainActivity">
 
-    <include layout="@layout/store_search"/>
+    <include layout="@layout/store_layout"/>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navMenu"

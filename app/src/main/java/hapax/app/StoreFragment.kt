@@ -19,7 +19,7 @@ class StoreFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.store_search, container, false)
+        return inflater.inflate(R.layout.store_layout, container, false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
