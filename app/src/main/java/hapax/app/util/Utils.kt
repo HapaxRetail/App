@@ -19,7 +19,7 @@ fun listener(function: (String) -> Unit) : SearchView.OnQueryTextListener {
     return object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(search: String): Boolean {
             function.invoke(search)
-            return true
+            return false
         }
 
         override fun onQueryTextChange(search: String): Boolean {
