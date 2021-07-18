@@ -40,6 +40,7 @@ class AppActivity: AppCompatActivity() {
 
                 searchView.setOnQueryTextListener(listener { search ->
                     val results = store.products.search(search, Product::name).sortedByDescending(Product::stars)
+                    hideSVG()
                     adapter.search( results )
                     rvProducts.setPadding(0, if (results.isEmpty()) 0 else 40, 0, 0)
                 })
