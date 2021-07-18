@@ -1,33 +1,20 @@
 package hapax.app
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import hapax.app.adapter.StoreAdapter
-import hapax.app.databinding.SearchLayoutBinding
+import hapax.app.databinding.FragmentStoresBinding
 import hapax.app.rest.RESTService
-import hapax.app.util.*
-import kotlinx.android.synthetic.main.search_layout.*
-import java.util.*
+import hapax.app.util.callback
+import hapax.app.util.listener
+import hapax.app.util.search
 
-class StoreFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.store_layout, container, false)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+class FragmentStores : Fragment(R.layout.fragment_stores) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = StoreAdapter()
-
-        SearchLayoutBinding.inflate(layoutInflater).apply {
+        FragmentStoresBinding.bind(view).apply {
             rvStores.adapter = adapter
             rvStores.layoutManager = LinearLayoutManager(context)
 

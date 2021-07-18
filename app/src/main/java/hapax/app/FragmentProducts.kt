@@ -4,44 +4,34 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.caverock.androidsvg.SVG
 import hapax.app.adapter.ProductAdapter
-import hapax.app.databinding.AppLayoutBinding
+import hapax.app.databinding.FragmentProductsBinding
 import hapax.app.rest.RESTService
 import hapax.app.rest.model.req.StoreId
 import hapax.app.rest.model.req.SvgId
 import hapax.app.rest.model.res.Product
-import hapax.app.util.*
+import hapax.app.util.callback
+import hapax.app.util.listener
+import hapax.app.util.search
 import kotlin.math.ceil
 
 
-class ProductFragment: Fragment() {
-    var svg : SVG? = null
-    lateinit var svgView : ImageView
+class FragmentProducts: Fragment(R.layout.fragment_products) {
+    private var svg : SVG? = null
+    private lateinit var svgView : ImageView
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.product_layout, container, false).apply {
-            svgView = findViewById(R.id.image)
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        svgView = view.findViewById(R.id.image)
 
         val name = arguments?.getString("store")!!
         val adapter = ProductAdapter(this)
 
-        AppLayoutBinding.inflate(layoutInflater).apply {
+        FragmentProductsBinding.bind(view).apply {
             rvProducts.adapter = adapter
             rvProducts.layoutManager = LinearLayoutManager(context)
 
@@ -84,7 +74,7 @@ class ProductFragment: Fragment() {
         svgView.setImageBitmap(bitMap)
     }
 
-    fun hideSVG() {
+    private fun hideSVG() {
         svgView.setImageBitmap(null)
     }
 }

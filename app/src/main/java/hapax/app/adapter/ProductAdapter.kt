@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import hapax.app.ProductFragment
+import hapax.app.FragmentProducts
 import hapax.app.R
 import hapax.app.databinding.RcProductBinding
 import hapax.app.rest.model.res.Product
 import java.text.DecimalFormat
 import java.util.Collections.singletonList
 
-class ProductAdapter (val activity : ProductFragment): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter (private val parent : FragmentProducts): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     private var products: List<Product> = emptyList()
     private val shoppingList = mutableSetOf<Product>()
 
@@ -43,12 +43,12 @@ class ProductAdapter (val activity : ProductFragment): RecyclerView.Adapter<Prod
             star3.setBackgroundResource(if(product.stars >= 3) R.color.yellow else R.color.gray)
             find.setOnClickListener {
                 search(singletonList(product))
-                activity.displaySVG(product)
+                parent.displaySVG(product)
             }
             inList.setOnClickListener { when {
-                    shoppingList.remove(product) -> inList.isChecked = false
-                    shoppingList.add(product) -> inList.isChecked = true
-                } }
+                shoppingList.remove(product) -> inList.isChecked = false
+                shoppingList.add(product) -> inList.isChecked = true
+            } }
         }
     }
 

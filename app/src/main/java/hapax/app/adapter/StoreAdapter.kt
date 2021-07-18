@@ -1,11 +1,14 @@
 package hapax.app.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.RecyclerView
-import hapax.app.ProductFragment
+import hapax.app.FragmentProducts
 import hapax.app.R
 import hapax.app.databinding.RcStoreBinding
 
@@ -33,11 +36,14 @@ class StoreAdapter (private var stores: List<String> = emptyList()) :
     override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
         val name = stores[position]
         val view = holder.itemView
-        view.setOnClickListener {
-            val storeIntent = Intent(view.context, ProductFragment::class.java).putExtra("store", name)
-            view.context.startActivity(storeIntent)
-        }
         RcStoreBinding.bind(view).name.text = name
+        view.setOnClickListener {
+            (view.context as? FragmentActivity
+                ?: return@setOnClickListener).supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<FragmentProducts>(R.id.include_layout, args = bundleOf("store" to name))
+            }
+        }
     }
 
     override fun getItemCount(): Int {
