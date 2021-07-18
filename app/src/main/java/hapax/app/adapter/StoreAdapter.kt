@@ -4,16 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.recyclerview.widget.RecyclerView
 import hapax.app.FragmentProducts
+import hapax.app.FragmentStores
 import hapax.app.R
 import hapax.app.databinding.RcStoreBinding
 
-class StoreAdapter (private var stores: List<String> = emptyList()) :
+class StoreAdapter (private val parent: FragmentStores) :
     RecyclerView.Adapter<StoreAdapter.StoreViewHolder>() {
+
+    private var stores: List<String> = emptyList()
 
     class StoreViewHolder (itemView : View) : RecyclerView.ViewHolder (itemView)
 
@@ -29,7 +31,6 @@ class StoreAdapter (private var stores: List<String> = emptyList()) :
 
     fun search(search : List<String>) {
         stores = search
-
         notifyDataSetChanged()
     }
 
@@ -38,8 +39,7 @@ class StoreAdapter (private var stores: List<String> = emptyList()) :
         val view = holder.itemView
         RcStoreBinding.bind(view).name.text = name
         view.setOnClickListener {
-            (view.context as? FragmentActivity
-                ?: return@setOnClickListener).supportFragmentManager.commit {
+            parent.requireActivity().supportFragmentManager.commit {
                 replace<FragmentProducts>(R.id.include_layout, args = bundleOf("store" to name))
                 setReorderingAllowed(true)
                 addToBackStack(null)

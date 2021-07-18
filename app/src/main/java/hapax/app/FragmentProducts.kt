@@ -24,12 +24,11 @@ import kotlin.math.ceil
 class FragmentProducts: Fragment(R.layout.fragment_products) {
     private var svg : SVG? = null
     private lateinit var svgView : ImageView
-    private var prevSearch : String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         svgView = view.findViewById(R.id.image)
 
-        val name = arguments?.getString("store")!!
+        val name = requireArguments().getString("store")!!
         val adapter = ProductAdapter(this)
 
         FragmentProductsBinding.bind(view).apply {
@@ -43,11 +42,9 @@ class FragmentProducts: Fragment(R.layout.fragment_products) {
 
                 searchView.setOnQueryTextListener(listener { search ->
                     val results = store.products.search(search, Product::name).sortedByDescending(Product::stars)
-                    if(search != prevSearch) hideSVG()
-
-                    adapter.search( results )
+                    hideSVG()
+                    adapter.search(results)
                     rvProducts.setPadding(0, if (results.isEmpty()) 0 else 40, 0, 0)
-                    prevSearch = search
                 })
             })
         }

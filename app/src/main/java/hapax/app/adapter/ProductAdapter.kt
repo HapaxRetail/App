@@ -1,8 +1,10 @@
 package hapax.app.adapter
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.RecyclerView
 import hapax.app.FragmentProducts
 import hapax.app.R
@@ -44,6 +46,11 @@ class ProductAdapter (private val parent : FragmentProducts): RecyclerView.Adapt
             find.setOnClickListener {
                 search(singletonList(product))
                 parent.displaySVG(product)
+
+                parent.activity?.let { activity ->
+                    val service = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                    service.hideSoftInputFromWindow(holder.itemView.windowToken, 0)
+                }
             }
             inList.setOnClickListener { when {
                 shoppingList.remove(product) -> inList.isChecked = false

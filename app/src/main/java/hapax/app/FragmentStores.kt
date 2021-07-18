@@ -13,7 +13,7 @@ import hapax.app.util.search
 
 class FragmentStores : Fragment(R.layout.fragment_stores) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = StoreAdapter()
+        val adapter = StoreAdapter(this)
         FragmentStoresBinding.bind(view).apply {
             rvStores.adapter = adapter
             rvStores.layoutManager = LinearLayoutManager(context)
