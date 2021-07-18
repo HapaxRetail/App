@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="52dp"
         android:shadowColor="#9A2B08"
         android:text="@string/search_title"
         android:textAlignment="center"
@@ -23,7 +23,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/searchView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvStores"
@@ -55,16 +58,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     </SearchView>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/menu_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:background="#3C3C3C"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

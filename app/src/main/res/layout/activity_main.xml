@@ -7,6 +7,8 @@
     android:id="@+id/drawerLayout"
     tools:context=".MainActivity">
 
+    <include layout="@layout/navigation_toolbar" />
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navMenu"
         android:layout_width="match_parent"
@@ -14,13 +16,6 @@
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/navigation_menu"
         android:layout_gravity="start"
-        android:background="@color/white"
-        />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/include_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="hapax.app.FragmentStores" />
+        android:background="@color/white" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

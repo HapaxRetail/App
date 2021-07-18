@@ -3,8 +3,8 @@ package hapax.app
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import hapax.app.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.fragment_stores.view.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,9 +18,10 @@ class MainActivity : AppCompatActivity() {
 
         ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
-            setSupportActionBar(includeLayout.menu_toolbar)
+            val toolbar = findViewById<Toolbar>(R.id.menuToolbar)
+            setSupportActionBar(toolbar)
 
-            val toggle = ActionBarDrawerToggle(this@MainActivity, drawerLayout, includeLayout.menu_toolbar, R.string.open, R.string.close)
+            val toggle = ActionBarDrawerToggle(this@MainActivity, drawerLayout, toolbar, R.string.open, R.string.close)
             toggle.isDrawerIndicatorEnabled = true
             toggle.isDrawerSlideAnimationEnabled = true
             drawerLayout.addDrawerListener(toggle)
