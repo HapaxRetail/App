@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import hapax.app.AppActivity
+import hapax.app.ProductFragment
 import hapax.app.R
 import hapax.app.databinding.RcProductBinding
 import hapax.app.rest.model.res.Product
 import java.text.DecimalFormat
 import java.util.Collections.singletonList
 
-class ProductAdapter (val activity : AppActivity): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter (val activity : ProductFragment): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     private var products: List<Product> = emptyList()
     private val shoppingList = mutableSetOf<Product>()
 

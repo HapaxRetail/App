@@ -21,11 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SearchActivity"
+            android:name=".StoreFragment"
             android:theme="@style/Theme.Hapax">
         </activity> <!-- <activity android:name=".MainActivity"> -->
         <!-- </activity> -->
-        <activity android:name=".AppActivity"></activity>
+        <activity android:name=".ProductFragment"></activity>
     </application>
 
 </manifest>

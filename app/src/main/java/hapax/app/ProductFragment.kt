@@ -4,8 +4,11 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.caverock.androidsvg.SVG
 import hapax.app.adapter.ProductAdapter
@@ -18,20 +21,29 @@ import hapax.app.util.*
 import kotlin.math.ceil
 
 
-class AppActivity: AppCompatActivity() {
+class ProductFragment: Fragment() {
     var svg : SVG? = null
+    lateinit var svgView : ImageView
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.product_layout, container, false).apply {
+            svgView = findViewById(R.id.image)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val name = intent.extras?.getString("store")!!
+        val name = arguments?.getString("store")!!
         val adapter = ProductAdapter(this)
 
         AppLayoutBinding.inflate(layoutInflater).apply {
-            setContentView(root)
-
             rvProducts.adapter = adapter
-            rvProducts.layoutManager = LinearLayoutManager(this@AppActivity)
+            rvProducts.layoutManager = LinearLayoutManager(context)
 
             RESTService.serv.getStores(StoreId(name)).enqueue(callback { store ->
                 RESTService.serv.getSVG(SvgId(store.svgURI)).enqueue(callback { body ->
@@ -51,7 +63,7 @@ class AppActivity: AppCompatActivity() {
     private val productPaint by lazy {
         Paint().apply {
             isAntiAlias = true
-            color = resources.getColor(R.color.red, theme)
+            color = resources.getColor(R.color.red, context?.theme)
             style = Paint.Style.FILL
             textSize = 20f
         }
@@ -60,7 +72,6 @@ class AppActivity: AppCompatActivity() {
     fun displaySVG(product : Product) {
         val svg = svg ?: return
 
-        val imageView : ImageView = findViewById(R.id.image)
         val bitMap = Bitmap.createBitmap(
             ceil(svg.documentWidth).toInt(),
             ceil(svg.documentHeight).toInt(),
@@ -70,12 +81,11 @@ class AppActivity: AppCompatActivity() {
         svg.renderToCanvas(canvas)
         //canvas.drawText(product.name, product.x.toFloat() - 5, product.y.toFloat() - 10, productPaint)
         canvas.drawCircle(product.x.toFloat(), product.y.toFloat(), 20f, productPaint)
-        imageView.setImageBitmap(bitMap)
+        svgView.setImageBitmap(bitMap)
     }
 
     fun hideSVG() {
-        val imageView : ImageView = findViewById(R.id.image)
-        imageView.setImageBitmap(null)
+        svgView.setImageBitmap(null)
     }
 }
 
