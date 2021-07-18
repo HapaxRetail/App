@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
-            val toolbar = findViewById<Toolbar>(R.id.menuToolbar)
+            val toolbar = findViewById<Toolbar>(R.id.menuToolbar).apply { title = "" }
             setSupportActionBar(toolbar)
 
             val toggle = ActionBarDrawerToggle(this@MainActivity, drawerLayout, toolbar, R.string.open, R.string.close)
