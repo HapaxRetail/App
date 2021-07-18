@@ -7,13 +7,13 @@
 
     <activity
         android:id="@+id/searchActivity"
-        android:name="hapax.app.SearchActivity"
+        android:name="hapax.app.FragmentStores"
         android:label="SearchActivity"
-        tools:layout="@layout/search_layout" />
+        tools:layout="@layout/fragment_stores" />
 
     <activity
         android:id="@+id/appActivity"
-        android:name="hapax.app.AppActivity"
+        android:name="hapax.app.FragmentProducts"
         android:label="AppActivity"
-        tools:layout="@layout/app_layout"/>
+        tools:layout="@layout/fragment_products"/>
 </navigation>

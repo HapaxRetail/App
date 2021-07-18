@@ -1,17 +1,19 @@
 package hapax.app.adapter
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.RecyclerView
-import hapax.app.AppActivity
+import hapax.app.FragmentProducts
 import hapax.app.R
 import hapax.app.databinding.RcProductBinding
 import hapax.app.rest.model.res.Product
 import java.text.DecimalFormat
 import java.util.Collections.singletonList
 
-class ProductAdapter (val activity : AppActivity): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter (private val parent : FragmentProducts): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     private var products: List<Product> = emptyList()
     private val shoppingList = mutableSetOf<Product>()
 
@@ -43,12 +45,17 @@ class ProductAdapter (val activity : AppActivity): RecyclerView.Adapter<ProductA
             star3.setBackgroundResource(if(product.stars >= 3) R.color.yellow else R.color.gray)
             find.setOnClickListener {
                 search(singletonList(product))
-                activity.displaySVG(product)
+                parent.displaySVG(product)
+
+                parent.activity?.let { activity ->
+                    val service = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                    service.hideSoftInputFromWindow(holder.itemView.windowToken, 0)
+                }
             }
             inList.setOnClickListener { when {
-                    shoppingList.remove(product) -> inList.isChecked = false
-                    shoppingList.add(product) -> inList.isChecked = true
-                } }
+                shoppingList.remove(product) -> inList.isChecked = false
+                shoppingList.add(product) -> inList.isChecked = true
+            } }
         }
     }
 
