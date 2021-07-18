@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.recyclerview.widget.RecyclerView
 import hapax.app.FragmentProducts
 import hapax.app.R
@@ -40,8 +40,9 @@ class StoreAdapter (private var stores: List<String> = emptyList()) :
         view.setOnClickListener {
             (view.context as? FragmentActivity
                 ?: return@setOnClickListener).supportFragmentManager.commit {
+                replace<FragmentProducts>(R.id.include_layout, args = bundleOf("store" to name))
                 setReorderingAllowed(true)
-                add<FragmentProducts>(R.id.include_layout, args = bundleOf("store" to name))
+                addToBackStack(null)
             }
         }
     }
