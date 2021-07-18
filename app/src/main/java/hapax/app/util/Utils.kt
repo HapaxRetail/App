@@ -32,5 +32,8 @@ fun listener(function: (String) -> Unit) : SearchView.OnQueryTextListener {
 fun <T> List<T>.search(search : String, function: (T) -> String) : List<T> {
     if(search.isEmpty()) return emptyList()
 
-    return filter { item -> function.invoke(item).split(" ").any { name -> name.startsWith(search, true) } }
+    return filter { item -> function.invoke(item).let { name ->
+        name.startsWith(search, true) or
+        name.split(" ").any { arg -> arg.startsWith(search, true) }
+    } }
 }
