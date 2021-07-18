@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_orange"
+    tools:context=".FragmentProfile">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="239dp"-->
+<!--        android:layout_height="61dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginStart="85dp"-->
+<!--        android:layout_marginTop="36dp"-->
+<!--        android:layout_marginEnd="85dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:background="@drawable/my_profile_box"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/points"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0"/>-->
+
+    <RelativeLayout
+        android:id="@+id/badges"
+        android:layout_width="139dp"
+        android:layout_height="141dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="59dp"
+        android:background="@drawable/small_box"
+        app:layout_constraintBottom_toBottomOf="@+id/points"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/points"
+        app:layout_constraintTop_toTopOf="@+id/points">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="62dp">
+
+            <TextView
+                android:id="@+id/bb_badge"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/montserratreg"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="BB badges"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHighlight="#FF5722"
+                android:textColorLink="#FF9800"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="96dp"
+                tools:layout_editor_absoluteY="27dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bb_badges"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="40dp"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:text="10" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/points"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/small_box"
+        app:layout_constraintEnd_toStartOf="@+id/badges"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="62dp">
+
+            <TextView
+                android:id="@+id/bb_point"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/montserratreg"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="BB points"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHighlight="#FF5722"
+                android:textColorLink="#FF9800"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="96dp"
+                tools:layout_editor_absoluteY="27dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bb_points"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="40dp"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:text="30" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bigBox"
+        android:layout_width="298dp"
+        android:layout_height="173dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="259dp"
+        android:background="@drawable/big_box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/points" />
+
+    <RelativeLayout
+        android:id="@+id/stores"
+        android:layout_width="298dp"
+        android:layout_height="190dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="39dp"
+        android:background="@drawable/recent_stores"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bigBox" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
